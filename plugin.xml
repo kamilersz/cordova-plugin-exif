@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+    id="com.appgyver.plugin.Exif"
+    version="1.0.0">
+
+    <name>ExifPlugin</name>
+
+  <description>
+    Exif Plugin for Steroids.js
+  </description>
+
+  <asset src="www/ExifPlugin.js" target="plugins/ExifPlugin.js" />
+
+  <engines>
+    <engine name="cordova" version=">=2.7.0" />
+  </engines>
+
+  <!-- android -->
+  <platform name="android">
+    <config-file target="res/xml/config.xml" parent="plugins">
+      <plugin name="Exif" value="com.appgyver.plugin.Exif"/>
+    </config-file>
+
+    <source-file src="src/android/com/appgyver/plugin/Exif.java"
+      target-dir="src/com/appgyver/plugin" />
+  </platform>
+
+  <!-- ios -->
+  <platform name="ios">
+    <config-file target="config.xml" parent="/*/plugins">
+      <plugin name="Exif" value="Exif" onload="true" />
+    </config-file>
+
+    <config-file target="config.xml" parent="/widget">
+      <feature name="Exif">
+        <param name="ios-package" value="Exif"/>
+        <param name="onload" value="true" />
+      </feature>
+    </config-file>
+
+    <header-file src="src/ios/Exif.h" />
+
+    <source-file src="src/ios/Exif.m" />
+
+  </platform>
+</plugin>
