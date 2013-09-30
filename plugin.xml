@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
-    id="com.appgyver.plugin.Exif"
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    id="org.apache.cordova.plugin.Exif"
+	xmlns:android="http://schemas.android.com/apk/res/android"
     version="1.0.0">
 
     <name>ExifPlugin</name>
@@ -18,11 +19,11 @@
   <!-- android -->
   <platform name="android">
     <config-file target="res/xml/config.xml" parent="plugins">
-      <plugin name="Exif" value="com.appgyver.plugin.Exif"/>
+      <plugin name="Exif" value="org.apache.cordova.plugin.Exif"/>
     </config-file>
 
-    <source-file src="src/android/com/appgyver/plugin/Exif.java"
-      target-dir="src/com/appgyver/plugin" />
+    <source-file src="src/android/org/apache/cordova/plugin/Exif.java"
+      target-dir="src/org/apache/cordova/plugin" />
   </platform>
 
 </plugin>
