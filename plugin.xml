@@ -25,22 +25,4 @@
       target-dir="src/com/appgyver/plugin" />
   </platform>
 
-  <!-- ios -->
-  <platform name="ios">
-    <config-file target="config.xml" parent="/*/plugins">
-      <plugin name="Exif" value="Exif" onload="true" />
-    </config-file>
-
-    <config-file target="config.xml" parent="/widget">
-      <feature name="Exif">
-        <param name="ios-package" value="Exif"/>
-        <param name="onload" value="true" />
-      </feature>
-    </config-file>
-
-    <header-file src="src/ios/Exif.h" />
-
-    <source-file src="src/ios/Exif.m" />
-
-  </platform>
 </plugin>

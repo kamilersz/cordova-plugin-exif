@@ -1,4 +1,4 @@
-package org.apache.cordova.plugin;
+package com.appgyver.plugin;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
@@ -51,7 +51,7 @@ public class Exif extends CordovaPlugin {
 				if (longitude > 0) {
 					exif.setAttribute(ExifInterface.TAG_GPS_LONGITUDE_REF, "E");    
 				} else {
-				exif.setAttribute(ExifInterface.TAG_GPS_LONGITUDE_REF, "W");
+					exif.setAttribute(ExifInterface.TAG_GPS_LONGITUDE_REF, "W");
 				}
 
 				exif.saveAttributes();
