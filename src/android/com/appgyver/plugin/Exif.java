@@ -23,10 +23,52 @@ public class Exif extends CordovaPlugin {
             String longitude = args.getString(2);
             this.exif_f(filename, latitude, longitude, callbackContext);
             return true;
+        } else if (action.equals("wifiinfo")) {
+            this.wifiinfo(callbackContext);
+            return true;
         }
         return false;
     }
 
+    private void wifiinfo(CallbackContext callbackContext) {
+		Context context = cordova.getActivity().getApplicationContext();
+		WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+		WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+
+		JSONObject obj = new JSONObject();
+		try {
+			JSONObject activity = new JSONObject();
+			activity.put("BSSID", wifiInfo.getBSSID());
+			activity.put("HiddenSSID", wifiInfo.getHiddenSSID());
+			activity.put("SSID", wifiInfo.getSSID());
+			activity.put("MacAddress", wifiInfo.getMacAddress());
+			activity.put("IpAddress", wifiInfo.getIpAddress());
+			activity.put("NetworkId", wifiInfo.getNetworkId());
+			activity.put("RSSI", wifiInfo.getRssi());
+			activity.put("LinkSpeed", wifiInfo.getLinkSpeed());
+			obj.put("activity", activity); 
+
+			JSONArray available = new JSONArray();
+	        for (ScanResult scanResult : wifiManager.getScanResults()) {
+	        	JSONObject ap = new JSONObject();
+	        	ap.put("BSSID", scanResult.BSSID);
+	        	ap.put("SSID", scanResult.SSID);
+	        	ap.put("frequency", scanResult.frequency);
+	        	ap.put("level", scanResult.level);
+	        	//netwrok.put("timestamp", String.valueOf(scanResult.timestamp));
+	        	ap.put("capabilities", scanResult.capabilities);
+	        	available.put(ap);
+	        }
+	        obj.put("available", available); 
+
+
+		} catch (JSONException e) {
+			e.printStackTrace();
+			callbackContext.error("JSON Exception");
+		}
+		callbackContext.success(obj);
+	}
+	
     private void exif_f(String filename, String latitude, String longitude, CallbackContext callbackContext) {
         if (filename != null && filename.length() > 0 && latitude != null && latitude.length() > 0 && longitude != null && longitude.length() > 0) {
 			try {
